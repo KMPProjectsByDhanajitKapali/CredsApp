@@ -10,20 +10,20 @@ import Foundation
 import shared
 
 class KMPViewModelWrapper<States: AnyObject, Events: AnyObject, Actions: AnyObject>: ObservableObject {
-    //var viewmodel: IFlowViewModel?
+    var viewmodel: IFlowViewModel?
     @Published var state: States?
 
-//    init(event: (Events?) -> Void) {
-//        viewmodel = nil
-//        state = viewmodel?.initialState as? States
-//        event(nil)
-//    }
-//    
-//    init(viewmodel: IFlowViewModel?, events: @escaping ((Events?) -> Void)) {
-//        self.viewmodel = viewmodel
-//        state = viewmodel?.initialState as? States
-//        
-//        if let stateHolder = viewmodel?.stateHolder, let eventHolder = viewmodel?.eventHolder {
+    init(event: (Events?) -> Void) {
+        viewmodel = nil
+        state = viewmodel?.initialState as? States
+        event(nil)
+    }
+    
+    init(viewmodel: IFlowViewModel?, events: @escaping ((Events?) -> Void)) {
+        self.viewmodel = viewmodel
+        state = viewmodel?.initialState as? States
+        
+        if let stateHolder = viewmodel?.stateHolder, let eventHolder = viewmodel?.eventHolder {
 //            CommonFlow<States>(origin: stateHolder as Flow).watch { newState in
 //                self.state = newState
 //            }
@@ -35,19 +35,19 @@ class KMPViewModelWrapper<States: AnyObject, Events: AnyObject, Actions: AnyObje
 //                    self.getEvents(event: newEvent)
 //                }
 //            }
-//        } else {
-//            state = nil
-//            events(nil)
-//        }
-//    }
-//
-//    func add(action: Actions) {
-//        if let viewmodel = viewmodel {
-//            viewmodel.add(action: action)
-//        }
-//    }
-//    
-//    func getEvents(event: Events?) {
-//    }
+        } else {
+            state = nil
+            events(nil)
+        }
+    }
+
+    func add(action: Actions) {
+        if let viewmodel = viewmodel {
+            viewmodel.add(action: action)
+        }
+    }
+    
+    func getEvents(event: Events?) {
+    }
 }
 
