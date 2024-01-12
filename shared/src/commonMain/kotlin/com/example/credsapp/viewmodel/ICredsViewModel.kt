@@ -7,6 +7,7 @@ import com.example.kmm.core.viewmodel.IFlowViewModel
 interface ICredsViewModel<S, E, A>: IFlowViewModel<S, E, A> {
 
     sealed class UIState {
+        object Loading : UIState()
         data class Initialized(
             val credList: List<CreditDebitModel>,
             val selectedListType: ListType,

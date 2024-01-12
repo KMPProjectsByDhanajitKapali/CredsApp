@@ -20,6 +20,7 @@ kotlin {
         it.binaries.framework {
             baseName = "shared"
             isStatic = true
+            linkerOpts += "-ld64"
         }
     }
 
@@ -27,13 +28,30 @@ kotlin {
         val commonMain by getting {
             //put your multiplatform dependencies here
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+            }
+        }
+
+        val androidMain by getting {
+            dependencies {
                 api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
             }
         }
-//        commonTest.dependencies {
-//            implementation(libs.kotlin.test)
-//        }
+
+        val iosX64Main by getting
+        val iosArm64Main by getting {
+            dependencies {
+            }
+        }
+        val iosSimulatorArm64Main by getting
+        val iosMain by creating {
+            dependencies {
+            }
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
     }
 }
 
