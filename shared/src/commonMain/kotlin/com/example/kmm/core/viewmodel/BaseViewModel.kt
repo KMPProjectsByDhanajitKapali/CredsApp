@@ -1,9 +1,11 @@
 package com.example.kmm.core.viewmodel
 
 import com.example.kmm.core.coroutines.AppCoroutineDispatchers
+import com.example.kmm.core.coroutines.asCommonFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 abstract class BaseViewModel<S, E, A>(
@@ -37,4 +39,8 @@ abstract class BaseViewModel<S, E, A>(
     override fun onEventConsumed() {
         pushEvent(null)
     }
+
+    // ios backport
+    val iOSStateHolder by lazy { stateHolder.asCommonFlow() }
+    val iOSEventHolder by lazy { eventHolder.asCommonFlow() }
 }

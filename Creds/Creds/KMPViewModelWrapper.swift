@@ -24,9 +24,9 @@ class KMPViewModelWrapper<States: AnyObject, Events: AnyObject, Actions: AnyObje
         state = viewmodel?.initialState as? States
         
         if let stateHolder = viewmodel?.stateHolder, let eventHolder = viewmodel?.eventHolder {
-//            CommonFlow<States>(origin: stateHolder as Flow).watch { newState in
-//                self.state = newState
-//            }
+            CommonFlow<States>(origin: stateHolder as Flow).watch { newState in
+                self.state = newState
+            }
 //            
 //            CommonFlow<Events>(origin: eventHolder as Flow).watch { newEvent in
 //                events(newEvent)
