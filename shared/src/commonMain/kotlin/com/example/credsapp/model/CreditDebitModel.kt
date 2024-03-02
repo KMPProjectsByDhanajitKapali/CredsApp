@@ -7,7 +7,7 @@ data class CreditDebitModel(
     val cvv: String = "",
     val cardExpiryDate: String = "",
     val cardLastUsed: String = "",
-    val cardLastUsedInterval: String = ""
+    val cardLastUsedInterval: Int = 0
 )
 
 enum class CredType {

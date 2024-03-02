@@ -14,7 +14,7 @@ struct CreditDebitCardView: View {
     var cardCVV: String
     var cardExpiry: String
     var cardLastUsedDate: String
-    var cardLastUsedInterval: String
+    var cardLastUsedInterval: Int
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -148,7 +148,7 @@ extension CreditDebitCardView {
             )
                 .cornerRadius(5.0)
             
-            Text(cardExpiry)
+            Text(cardLastUsedDate)
                 .font(.system(size: 10))
                 .fontWeight(.regular)
                 .foregroundColor(.black)
@@ -174,7 +174,7 @@ extension CreditDebitCardView {
             )
                 .cornerRadius(5.0)
             
-            Text(cardExpiry)
+            Text("\(cardLastUsedInterval)")
                 .font(.system(size: 10))
                 .fontWeight(.regular)
                 .foregroundColor(.black)
@@ -196,7 +196,7 @@ extension CreditDebitCardView {
         cardCVV: "381",
         cardExpiry: "06/29",
         cardLastUsedDate: "09/01/2000",
-        cardLastUsedInterval: "8 months"
+        cardLastUsedInterval: 8
     )
 }
 
